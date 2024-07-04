@@ -22,21 +22,15 @@ void generateSoundex(const char *name, char *soundex) {
     int len = strlen(name);
     soundex[0] = toupper(name[0]);
     int sIndex = 1;
-    // Initialize lastCode with the Soundex code of the first character
-    char lastCode = getSoundexCode(name[0]);
     for (int i = 1; i < len && sIndex < 4; i++) {
-        char code = getSoundexCode(name[i]);     
-        // Ensure code is valid and not identical to lastCode before adding
-        if (code != '0' && code != lastCode) {
+        char code = getSoundexCode(name[i]);
+        if (code != '0' && code != soundex[sIndex - 1]) {
             soundex[sIndex++] = code;
-            lastCode = code; // Update lastCode to the current code
         }
     }
-    // Fill remaining positions in soundex with '0'
     while (sIndex < 4) {
         soundex[sIndex++] = '0';
     }
-
-    // Null-terminate soundex string
     soundex[4] = '\0';
 }
+ 
