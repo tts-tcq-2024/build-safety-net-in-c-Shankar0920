@@ -25,7 +25,7 @@ char eliminateZeroandRepeatedValue (char prevcode, char* soundex, size_t i, cons
 void initializeSoundex(char* soundex, char firstChar)
 {
     soundex[0] = toupper(firstChar);
-    if (tzname[0] == '\0')
+    if (name[0] == '\0')
     {
         soundex[0] = '\0'; // Empty string case
         return;
