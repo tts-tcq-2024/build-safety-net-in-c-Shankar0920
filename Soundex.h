@@ -48,7 +48,7 @@ void generateSoundex(const char* name, char* soundex)
     size_t i = 1;
     while (name[i] != '\0' && i < 4)
     {
-        prevCode = eliminateZeroAndRepeatedValue(prevCode, soundex, i, name);
+        prevCode = eliminateZeroandRepeatedValue(prevCode, soundex, i, name);
         i++;
     }
 
