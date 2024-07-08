@@ -25,7 +25,6 @@ char algorithmCheck(char prevcode, char* soundex, size_t i, const char* name)
 
 char calculateSoundex(const char* name, char* soundex)
 {
-    if (name[0] == '\0') return '\0';
 
     soundex[0] = toupper(name[0]);
     char prevCode = getSoundexCode(name[0]);
@@ -43,6 +42,7 @@ char calculateSoundex(const char* name, char* soundex)
 
 void generateSoundex(const char* name, char* result)
 {
+    if (name[0] == '\0') return '\0';
     char soundex[5] = "";
     char soundex_1[5] = "";
     soundex_1[5] = calculateSoundex(name, soundex);
