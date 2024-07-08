@@ -44,7 +44,7 @@ char calculateSoundex(const char* name, char* soundex)
 void generateSoundex(const char* name, char* result)
 {
     char soundex[5] = "";
-    char soundex_1 = calculateSoundex(name, soundex);
+    char soundex_1[5] = calculateSoundex(name, soundex);
      while (strlen(soundex_1) < 4)
     {
         soundex[strlen(soundex_1)] = '0';
