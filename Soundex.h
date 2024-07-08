@@ -22,7 +22,7 @@ char algorithmCheck(char prevcode, char* soundex, size_t i, const char* name)
     }
     return prevcode;
 }
-char soundexCode(const char* name, char* soundex, char prevcode,size_t i)
+char soundexCode(const char* name, char* soundex, char prevCode,size_t i)
 {
  while (name[i] != '\0' && i < 4)
     {
