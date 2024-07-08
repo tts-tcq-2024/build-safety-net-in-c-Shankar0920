@@ -22,7 +22,7 @@ char algorithmCheck(char prevcode, char* soundex, size_t i, const char* name)
     }
     return prevcode;
 }
-char* soundexCode(const char* name, char* soundex, char prevCode,size_t i)
+char soundexCode(const char* name, char* soundex, char prevCode,size_t i)
 {
  while (name[i] != '\0' && i < 4)
     {
@@ -50,7 +50,7 @@ void generateSoundex(const char* name, char* soundex)
     initializeSoundex(soundex, name[0]);
     char prevCode = getSoundexCode(name[0]);
     size_t i = 1;
-    soundex=soundexCode(name,soundex,prevCode,i);
-    padSoundex(soundex);
+    char* soundex_1=soundexCode(name,soundex,prevCode,i);
+    padSoundex(soundex_1);
 }
 #endif
