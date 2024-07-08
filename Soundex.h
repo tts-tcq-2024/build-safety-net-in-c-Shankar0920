@@ -50,7 +50,7 @@ void generateSoundex(const char* name, char* soundex)
     initializeSoundex(soundex, name[0]);
     char prevCode = getSoundexCode(name[0]);
     size_t i = 1;
-    char* soundex_1=soundexCode(name,soundex,prevCode,i);
+    char soundex_1=soundexCode(name,soundex,prevCode,i);
     padSoundex(soundex_1);
 }
 #endif
