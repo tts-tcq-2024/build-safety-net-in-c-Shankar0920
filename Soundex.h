@@ -1,10 +1,5 @@
-#ifndef SOUNDEX_H
-#define SOUNDEX_H
-
 #include <stdio.h>
 #include <ctype.h>
-#include <string.h>
-#include "Soundex.h"
 
 char getSoundexCode(char c)
 {
@@ -12,48 +7,39 @@ char getSoundexCode(char c)
     return soundexCodes[toupper(c) - 'A'];
 }
 
-char algorithmCheck(char prevcode, char* soundex, size_t i, const char* name)
+char eliminateZeroandRepeatedValue (char prevcode, char* soundex, size_t i, const char* name)
 {
-   char code = getSoundexCode(name[i]);
-   if (code != '0' && code != prevcode)
+    char code = getSoundexCode(name[i]);
+    if (code != '0' && code != prevcode)
     {
-        soundex[strlen(soundex)] = code;
+        soundex[i - 1] = code;
         prevcode = code;
-    } 
+    }
     return prevcode;
 }
 
-char calculateSoundex(const char* name, char* soundex)
+char* generateSoundex(const char* name, char* soundex)
 {
+    if (name[0] == '\0') {
+        return "";
+    }
 
     soundex[0] = toupper(name[0]);
     char prevCode = getSoundexCode(name[0]);
 
     size_t i = 1;
-    while (name[i] != '\0' && strlen(soundex) < 4)
+    while (name[i] != '\0' && i < 4)
     {
-        prevCode = algorithmCheck(prevCode, soundex, i, name);
+        prevCode = eliminateZeroandRepeatedValue(prevCode, soundex, i, name);
         i++;
     }
 
-   
-    return prevCode;
-}
-
-void generateSoundex(const char* name, char* result)
-{
-    if (name[0] == '\0')
+    while (i < 4)
     {
-        result = "";
+        soundex[i - 1] = '0';
+        i++;
     }
-    char soundex[5] = "";
-    char soundex_1[5] = "";
-    soundex_1[5] = calculateSoundex(name, soundex);
-     while (strlen(soundex_1) < 4)
-    {
-        soundex[strlen(soundex_1)] = '0';
-    }
-    strcpy(result, soundex_1);
-}
+    soundex[4] = '\0';
 
-#endif 
+    return soundex;
+}
