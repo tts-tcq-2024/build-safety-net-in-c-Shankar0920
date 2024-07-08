@@ -17,29 +17,35 @@ char eliminateZeroandRepeatedValue (char prevcode, char* soundex, size_t i, cons
     }
     return prevcode;
 }
-
-char* generateSoundex(const char* name, char* soundex)
+void initializeSoundex(char* soundex, char firstChar)
 {
-    if (name[0] == '\0') {
-        return "";
+    soundex[0] = toupper(firstChar);
+}
+void padSoundex(char* soundex)
+{
+    size_t i = strlen(soundex);
+    while (i < 4)
+    {
+        soundex[i] = '0';
+        i++;
     }
-
-    soundex[0] = toupper(name[0]);
+    soundex[4] = '\0'; // Ensure soundex is null-terminated
+}
+void generateSoundex(const char* name, char* soundex)
+{
+    if (name[0] == '\0')
+    {
+        soundex[0] = '\0'; // Empty string case
+        return;
+    }
+    initializeSoundex(soundex, name[0]);
     char prevCode = getSoundexCode(name[0]);
-
     size_t i = 1;
     while (name[i] != '\0' && i < 4)
     {
-        prevCode = eliminateZeroandRepeatedValue(prevCode, soundex, i, name);
+        prevCode = eliminateZeroAndRepeatedValue(prevCode, soundex, i, name);
         i++;
     }
 
-    while (i < 4)
-    {
-        soundex[i - 1] = '0';
-        i++;
-    }
-    soundex[4] = '\0';
-
-    return soundex;
+    padSoundex(soundex);
 }
