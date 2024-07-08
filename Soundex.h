@@ -26,13 +26,10 @@ void initializeSoundex(char* soundex, char firstChar)
 {
     soundex[0] = toupper(firstChar);
 }
-void padSoundex(char* soundex,const char* name)
+void padSoundex(char* soundex)
 {
     size_t i = strlen(soundex);
-    if (name[0] == '\0')
-    {
-        result = "";
-    }
+    
     while (i < 4)
     {
         soundex[i] = '0';
