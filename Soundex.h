@@ -43,13 +43,13 @@ char calculateSoundex(const char* name, char* soundex)
 
 void generateSoundex(const char* name, char* result)
 {
-    char soundex;
-    soundex = calculateSoundex(name, soundex);
-     while (strlen(soundex) < 4)
+    char soundex[5] = "";
+    char soundex_1 = calculateSoundex(name, soundex);
+     while (strlen(soundex_1) < 4)
     {
-        soundex[strlen(soundex)] = '0';
+        soundex[strlen(soundex_1)] = '0';
     }
-    strcpy(result, soundex);
+    strcpy(result, soundex_1);
 }
 
 #endif 
