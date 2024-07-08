@@ -35,7 +35,7 @@ void initializeSoundex(char* soundex, char firstChar)
 {
     soundex[0] = toupper(firstChar);
 }
-void padSoundex(char* soundex)
+void padSoundex(char soundex)
 {
     size_t i = strlen(soundex);
     while (i < 4)
