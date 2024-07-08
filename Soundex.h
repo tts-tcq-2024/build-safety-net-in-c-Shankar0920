@@ -37,18 +37,18 @@ char calculateSoundex(const char* name, char* soundex)
         i++;
     }
 
-    while (strlen(soundex) < 4)
-    {
-        soundex[strlen(soundex)] = '0';
-    }
-
+   
     return prevCode;
 }
 
 void generateSoundex(const char* name, char* result)
 {
     char soundex[5] = ""; // Soundex code will be maximum 4 characters long + null terminator
-    calculateSoundex(name, soundex);
+    soundex = calculateSoundex(name, soundex);
+     while (strlen(soundex) < 4)
+    {
+        soundex[strlen(soundex)] = '0';
+    }
     strcpy(result, soundex);
 }
 
