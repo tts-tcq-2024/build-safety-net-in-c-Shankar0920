@@ -29,6 +29,11 @@ void initializeSoundex(char* soundex, char firstChar)
 void padSoundex(char* soundex)
 {
     size_t i = strlen(soundex);
+    if (name[0] == '\0')
+    {
+        soundex[0] = '\0'; // Empty string case
+        return;
+    }
     while (i < 4)
     {
         soundex[i] = '0';
@@ -38,11 +43,7 @@ void padSoundex(char* soundex)
 }
 void generateSoundex(const char* name, char* soundex)
 {
-    if (name[0] == '\0')
-    {
-        soundex[0] = '\0'; // Empty string case
-        return;
-    }
+   
     initializeSoundex(soundex, name[0]);
     char prevCode = getSoundexCode(name[0]);
     size_t i = 1;
