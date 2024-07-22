@@ -12,7 +12,7 @@ char getSoundexCode(char c) {
 char eliminateZeroAndRepeatedValue(char prevcode, char* soundex, size_t i, const char* name) {
     char code = getSoundexCode(name[i]);
     if (code != '0' && code != prevcode) {
-        soundex[i - 1] = code;
+        soundex[strlen(soundex)] = code;
         prevcode = code; 
     }
     return prevcode;
