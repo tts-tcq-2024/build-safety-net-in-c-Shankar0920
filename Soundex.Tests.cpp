@@ -1,10 +1,17 @@
 #include <gtest/gtest.h>
 #include "Soundex.h"
 
-TEST(SoudexTestsuite, ReplacesConsonantsWithAppropriateDigits) {
- //AAA
-  char soundex[5];
-  generateSoundex("AX", soundex);
-  ASSERT_EQ(soundex,"A200");
+TEST(SoundexTest, HandlesEmptyString)
+{
+    EXPECT_EQ(generateSoundex(""), "");
 }
 
+TEST(SoundexTest, HandlesSingleCharacter) 
+{
+    EXPECT_EQ(generateSoundex("A"), "A000");
+}
+
+TEST(SoundexTest, HandlesString)
+{
+    EXPECT_EQ(generateSoundex("HERMAN"), "H650");
+}
